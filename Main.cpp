@@ -4,7 +4,8 @@
 #include <iostream>
 #include <string>
 #include <stdarg.h>
-
+#include <thread>
+#include <list>
 
 using namespace std;
 
@@ -70,6 +71,9 @@ int main()
 	
 	map<string, LuaScript*>::iterator scriptItr = ScriptManager::getInstance()->getScripts().begin();
 
+	//Thread repository
+		list<thread> threads;
+	
 	//Init all scripts
 	for(scriptItr; scriptItr != ScriptManager::getInstance()->getScripts().end(); scriptItr++)
 		scriptItr->second->lua_voidfunc("s", "init");
@@ -79,9 +83,13 @@ int main()
 	while(!quit)
 	{
 		printf("\n %d \n", ++count);
-		for(scriptItr = ScriptManager::getInstance()->getScripts().begin(); scriptItr != ScriptManager::getInstance()->getScripts().end(); scriptItr++)
+		for(scriptItr = ScriptManager::getInstance()->getScripts().begin();
+			scriptItr != ScriptManager::getInstance()->getScripts().end();
+			scriptItr++)
+		{
 			scriptItr->second->lua_voidfunc("s", "update");
-
+			threads.push_back(thread(scriptItr->second->lua_voidfunc("s","update")));
+		}
 		/*char q;
 		printf("Enter q to quit: ");
 		cin >> q;
