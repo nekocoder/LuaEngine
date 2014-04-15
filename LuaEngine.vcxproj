@@ -20,6 +20,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -87,14 +88,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LuaScript.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="ScriptManager.cpp" />
+    <ClCompile Include="src\LuaScript.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\ScriptManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Helper.h" />
-    <ClInclude Include="LuaScript.h" />
-    <ClInclude Include="ScriptManager.h" />
+    <ClInclude Include="src\Helper.h" />
+    <ClInclude Include="src\LuaScript.h" />
+    <ClInclude Include="src\ScriptManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
